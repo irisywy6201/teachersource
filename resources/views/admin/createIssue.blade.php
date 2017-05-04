@@ -26,10 +26,15 @@
           <div class="selectContainer">
             <select name="categoryId" class="form-control">
                 <option value="">請選擇文章種類</option>
-                @foreach($category as $category)
-                  <option value="{{$category->id}}">{{$category->name}}</option>
+                @foreach($userAuthority as $authory)
+                  @if($authory->userId == Auth::user()->id)
+                    @foreach($category as $categorys)
+                      @if($categorys->id == $authory->categoryId )
+                        <option value="{{$categorys->id}}">{{$categorys->name}}</option>
+                     @endif
+                   @endforeach
+                 @endif
                 @endforeach
-
             </select>
           </div>
 

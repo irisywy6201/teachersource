@@ -20,8 +20,10 @@ class issueController extends Controller
   }
   public function create(){
     $category=categoryList::all();
+    $userAuthority=userAuthority::all();
     return view('admin.createIssue',[
-      'category'=>$category
+      'category'=>$category,
+      'userAuthority'=>$userAuthority,
     ]);
   }
   public function store(Request $request){

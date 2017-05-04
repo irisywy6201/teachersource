@@ -21,7 +21,7 @@
            </tr>
          </thead>
          <tbody>
-           @if(Auth::user()->id == 2)
+           @if(Auth::user()->id == 1)
              @foreach($category as $categorys)
                 <tr><td style="background-color:#e6e6e6;font-size:18px">{{$categorys->name}}</td><td style="background-color:#e6e6e6"></td></tr>
                 @foreach($issue as $issues)

@@ -28,8 +28,8 @@
         <ul class="list-group">
           @if(Auth::user()->id == 1)<li class="list-group-item list-group-item-success"><a href="{{ url('category' )}}" style="color:gray">種類管理</a> </li>@endif
           <li class="list-group-item list-group-item-warning"><a href="{{ url('admin/issue' )}}" style="color:gray">文章管理</a> </li>
-          <li class="list-group-item list-group-item-success"><a href="{{ url('admin/management' )}}" style="color:gray">會員權限管理</a> </li>
-          <li class="list-group-item list-group-item-warning"><a href="#" style="color:gray">會員管理</a> </li>
+          @if(Auth::user()->id == 1)<li class="list-group-item list-group-item-success"><a href="{{ url('admin/management' )}}" style="color:gray">會員權限管理</a> </li>@endif
+          <!-- <li class="list-group-item list-group-item-warning"><a href="#" style="color:gray">會員管理</a> </li> -->
         </ul>
       </div>
       <div class="col-sm-10">

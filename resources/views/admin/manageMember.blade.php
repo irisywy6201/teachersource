@@ -7,6 +7,7 @@
     <table class="table">
      <thead>
        <tr>
+         <th>處室</th>
          <th>帳號</th>
          <th>/&nbsp;</th>
        </tr>
@@ -14,6 +15,7 @@
      <tbody>
        @foreach($user as $user)
         <tr>
+          <td>{{$user->office}}</td>
           <td>{{$user->name}}</td>
           <td><a href="{{url('admin/management/'.$user->id.'/edit')}}"><button type="button" class="btn btn-default btn-sm">
             <span class="glyphicon glyphicon-pencil"></span>編輯權限
