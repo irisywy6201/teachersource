@@ -57,15 +57,16 @@
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    登入
-                                </button>
+
                                 <a class="btn btn-link" href="{{ route('register') }}">
                                     沒有帳號?
                                 </a>
-                                <!-- <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a> -->
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    忘記密碼?
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                    登入
+                                </button>
                             </div>
                         </div>
                     </form>

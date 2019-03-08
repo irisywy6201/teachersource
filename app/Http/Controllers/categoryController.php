@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use Illuminate\Http\Request;
 use App\categoryList;
 use App\issueList;
@@ -11,10 +11,16 @@ class categoryController extends Controller
   {
       $category= categoryList::all();
       $issue= issueList::all();
-      return view('admin.category',[
-        'category'=>$category,
-        'issue'=>$issue,
-      ]);
+      if(Auth::user()){
+        return view('admin.category',[
+          'category'=>$category,
+          'issue'=>$issue,
+        ]);
+      }
+      else {
+        return redirect('/');
+      }
+
   }
   public function store(Request $request)
   {
@@ -27,10 +33,15 @@ class categoryController extends Controller
 	{
 		//
 		$category = categoryList::find($id);
+    if(Auth::user()){
+      return view('admin.editCategory',[
+        'category'=>$category,
+      ]);
+    }
+    else {
+      return redirect('/');
+    }
 
-		return view('admin.editCategory',[
-      'category'=>$category,
-    ]);
 	}
   public function update(Request $request,$id){
     $category=categoryList::find($id);

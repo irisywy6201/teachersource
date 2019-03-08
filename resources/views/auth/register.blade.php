@@ -1,5 +1,12 @@
 @extends('layout.layout')
+@section('css')
+  <style media="screen">
+  body{
+    background-image: url(/img/spring.jpg);
+  }
 
+  </style>
+@endsection
 @section('content')
 <div class="container">
     <div class="row">

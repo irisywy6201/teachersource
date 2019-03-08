@@ -19,3 +19,4 @@ Route::get('issue/{id}', 'homeController@show');
   Route::resource('category', 'categoryController');
   Route::resource('admin/issue', 'issueController');
   Route::resource('admin/management', 'managementController');
+  Route::resource('admin/user', 'userController');

@@ -2,6 +2,8 @@
 <html lang="zh-Hant">
 <head>
     <title></title>
+    {{-- icon --}}
+    <link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico" />
     {{-- mete區 --}}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

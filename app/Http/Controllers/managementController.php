@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use Illuminate\Http\Request;
 use App\categoryList;
 use App\issueList;
@@ -13,17 +13,29 @@ class managementController extends Controller
     $issue= issueList::all();
     $category=categoryList::all();
     $user=User::all();
-    return view('admin.manageMember',[
-      'issue'=>$issue,
-      'category'=>$category,
-      'user'=>$user
-    ]);
+    if(Auth::user()){
+      return view('admin.manageMember',[
+        'issue'=>$issue,
+        'category'=>$category,
+        'user'=>$user
+      ]);
+    }
+    else {
+      return redirect('/');
+    }
+
   }
   public function create(){
     $category=categoryList::all();
-    return view('admin.createAuthority',[
-      'category'=>$category
-    ]);
+    if(Auth::user()){
+      return view('admin.createAuthority',[
+        'category'=>$category
+      ]);
+    }
+    else {
+      return redirect('/');
+    }
+
   }
   public function store(Request $request){
     $this->validate($request, [
@@ -58,11 +70,17 @@ class managementController extends Controller
 		$user = User::find($id);
     $category=categoryList::all();
     $userAuthority=userAuthority::where('userId', '=', $id)->orderBy('userId', 'desc')->get();
-		return view('admin.createAuthority',[
-      'user'=>$user,
-      'category'=>$category,
-      'userAuthority'=>$userAuthority,
-    ]);
+    if(Auth::user()){
+      return view('admin.createAuthority',[
+        'user'=>$user,
+        'category'=>$category,
+        'userAuthority'=>$userAuthority,
+      ]);
+    }
+    else {
+      return redirect('/');
+    }
+
 	}
   public function update(Request $request,$id){
     $issue=issueList::find($id);

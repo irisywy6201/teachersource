@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use Illuminate\Http\Request;
 use App\categoryList;
 use App\issueList;
@@ -12,19 +12,31 @@ class issueController extends Controller
     $issue= issueList::all();
     $category=categoryList::all();
     $userAuthority=userAuthority::all();
-    return view('admin.issue',[
-      'issue'=>$issue,
-      'category'=>$category,
-      'userAuthority'=>$userAuthority,
-    ]);
+    if(Auth::user()){
+      return view('admin.issue',[
+        'issue'=>$issue,
+        'category'=>$category,
+        'userAuthority'=>$userAuthority,
+      ]);
+    }
+    else {
+      return redirect('/');
+    }
+
   }
   public function create(){
     $category=categoryList::all();
     $userAuthority=userAuthority::all();
-    return view('admin.createIssue',[
-      'category'=>$category,
-      'userAuthority'=>$userAuthority,
-    ]);
+    if(Auth::user()){
+      return view('admin.createIssue',[
+        'category'=>$category,
+        'userAuthority'=>$userAuthority,
+      ]);
+    }
+    else {
+      return redirect('/');
+    }
+
   }
   public function store(Request $request){
     $this->validate($request, [
@@ -33,7 +45,7 @@ class issueController extends Controller
     'content'=>'required',
     ],[
     'categoryId.required'=>'請選擇文章種類',
-    'name.required'=>'文章種類不可為空',
+    'name.required'=>'文章名稱不可為空',
     'content.required'=>'文章內容不可為空'
     ]);
     $issue=new issueList;
@@ -48,10 +60,16 @@ class issueController extends Controller
 		//
 		$issue = issueList::find($id);
     $category=categoryList::all();
-		return view('admin.editIssue',[
-      'issue'=>$issue,
-      'category'=>$category
-    ]);
+    if(Auth::user()){
+      return view('admin.editIssue',[
+        'issue'=>$issue,
+        'category'=>$category
+      ]);
+    }
+    else {
+      return redirect('/');
+    }
+
 	}
   public function update(Request $request,$id){
     $issue=issueList::find($id);
